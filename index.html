@@ -252,16 +252,15 @@ main{padding-block:190px 140px;max-width:1280px;margin:0 auto;transition:filter 
 .mx-wrap{overflow-x:auto;border:1px solid var(--line);background:var(--panel)}
 .mx{width:100%;border-collapse:collapse;min-width:820px}
 .mx th,.mx td{border-bottom:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
-.mx thead th{font-family:var(--f-ui);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;background:var(--soft)}
+.mx thead th{font-family:var(--f-ui);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
 .mx thead th + th,.mx td + td{border-left:1px solid var(--line)}
 .mx td.c{text-align:center;width:84px}
 .mx tbody tr{cursor:pointer}
-.mx tbody tr.skill:hover td{background:var(--soft)}
 .mx .sk{font-weight:700;font-size:14.5px}
 .mx .jb{font-family:var(--f-ui);font-size:12px;color:var(--blue);letter-spacing:.03em;white-space:nowrap}
 .dot{display:inline-block;width:12px;height:12px;border:1.5px solid var(--fg);vertical-align:middle}
 .dot.full{background:var(--fg)}
-.mx tr.ev td{background:var(--soft);font-size:13.5px}
+.mx tr.ev td{font-size:13.5px}
 .mx tr.ev ul{margin:0;padding-left:1.1em}
 .legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--muted);align-items:center}
 .legend .dot{margin-right:6px}
@@ -480,6 +479,7 @@ main .about .dm-head h3{font-family:var(--f-ui);font-size:12.5px!important;font-
     <nav class="menu" id="menu" aria-label="主選單">
       <button data-go="works">Works</button>
       <button data-go="about">About</button>
+      <button data-go="skills">Skills</button>
       <a href="https://github.com/zzlinislatszy" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
@@ -569,28 +569,30 @@ const PROJECTS = [
   jobs:['a5'], links:[] }
 ];
 
-const SOURCES = [['tdri','設研院'],['green','綠建築'],['stancode','stanCode'],['course','課程'],['betty','BETTY'],['thesis','論文']];
+const SOURCES = [['tdri','設研院'],['green','綠建築'],['stancode','stanCode'],['betty','BETTY._.WHO 品牌'],['thesis','研究論文']];
 const SKILLS = [
- {name:'需求訪談與使用者研究', jobs:['w2'], m:{tdri:2,betty:1},
-  ev:['設研院：與里長、校長、館長、教師訪談與現地調查','Betty：客人從 IG 進站、用內建瀏覽器下單，網站因此以手機為優先設計']},
- {name:'質性資料結構化', jobs:['w1','w3'], m:{tdri:2,stancode:2,thesis:1},
-  ev:['設研院：訪談與觀察 → 議題、需求、優先順序','stanCode：自由文字回診建議 → 時間、科別等結構化欄位','論文：文本、圖像、案例的詮釋與比對']},
- {name:'提示詞工程與 LLM 串接', jobs:['w3','a1'], m:{stancode:2},
-  ev:['健檢 API：四種語言的 system prompt，寫入「不臆測、不新增資訊、保留數字」的規則','回診提醒：規則處理不了的句子才交給 LLM']},
- {name:'從原型到上線', jobs:['w3','a1'], m:{betty:2,stancode:2},
-  ev:['Betty：訂購網站上線，取代 Google 表單','健檢 API：FastAPI 服務，附 Swagger 文件供串接方測試']},
- {name:'技術與設計之間的溝通', jobs:['w4'], m:{betty:2,stancode:2,tdri:1},
-  ev:['Betty：前後端以 API 規格分工，前端負責畫面與文案、後端負責價格與訂單','健檢 API：把醫療術語改寫給一般人讀','設研院：在建築師、機關、館方之間整合不同專業的意見']},
- {name:'多方協調與時程', jobs:['w5'], m:{tdri:2,green:1,betty:1},
-  ev:['設研院：建築師、政府機關、學校、館方、顧問','綠建築：送審、現場查核、掛件的流程節點','Betty：小團隊分工，產品分階段上線']},
- {name:'設計產業實務', jobs:['a5'], m:{tdri:2,green:2,thesis:2},
-  ev:['景觀學士、建築碩士','設研院公共設計專案','綠建築標章實務']},
- {name:'經典機器學習與模型評估', jobs:['a3'], m:{course:2},
-  ev:['波士頓房價：五模型加權投票，SC201 班內 Kaggle 第 1 名，RMS 比官方基準低約 36%','Titanic：手寫邏輯迴歸、scikit-learn、手寫神經網路三種做法','以驗證集監控過擬合']},
- {name:'影像辨識與深度學習', jobs:['a2','a3','a6'], m:{course:2},
+ {name:'AI 應用於設計流程', m:{tdri:2,stancode:2},
+  ev:['設研院：訪談與觀察 → 議題、需求、優先順序','stanCode：自由文字回診建議 → 時間、科別等結構化欄位']},
+ {name:'使用者需求訪談', m:{tdri:2,stancode:1},
+  ev:['設研院：與里長、校長、館長、教師訪談與現地調查']},
+ {name:'提示詞／原型開發', m:{stancode:2,betty:2},
+  ev:['健檢 API：四種語言的 system prompt，寫入「不臆測、不新增資訊、保留數字」的規則','回診提醒：規則處理不了的句子才交給 LLM','BETTY._.WHO 品牌：訂購網站上線，取代 Google 表單','健檢 API：FastAPI 服務，附 Swagger 文件供串接方測試']},
+ {name:'技術與設計師之間的橋樑', m:{stancode:2,tdri:1},
+  ev:['健檢 API：把醫療術語改寫給一般人讀','設研院：在建築師、機關、館方之間整合不同專業的意見']},
+ {name:'多方溝通與時程', m:{tdri:2,green:1,betty:1},
+  ev:['設研院：建築師、政府機關、學校、館方、顧問','綠建築：送審、現場查核、掛件的流程節點','BETTY._.WHO 品牌：小團隊分工，產品分階段上線']},
+ {name:'AI 軟體開發', m:{stancode:2,betty:2},
+  ev:['健檢 API：四種語言的 system prompt，寫入「不臆測、不新增資訊、保留數字」的規則','回診提醒：規則處理不了的句子才交給 LLM','BETTY._.WHO 品牌：訂購網站上線，取代 Google 表單','健檢 API：FastAPI 服務，附 Swagger 文件供串接方測試']},
+ {name:'影像辨識', m:{stancode:2},
   ev:['PyTorch：MNIST 手寫數字，CNN 與 LSTM 比較，驗證準確率約 93～94%','NumPy 手寫 5 層神經網路的前向與反向傳播','GloVe 詞向量相似度與 PCA 視覺化']},
- {name:'視覺溝通', jobs:['a4'], m:{betty:2,tdri:1,course:1},
-  ev:['Betty：品牌視覺與網站介面','設研院：展示層級與陳列原則','波士頓房價：特徵重要度圖表']}
+ {name:'ML／DL', m:{stancode:2},
+  ev:['波士頓房價：五模型加權投票，SC201 班內 Kaggle 第 1 名，RMS 比官方基準低約 36%','Titanic：手寫邏輯迴歸、scikit-learn、手寫神經網路三種做法','以驗證集監控過擬合','PyTorch：MNIST 手寫數字，CNN 與 LSTM 比較，驗證準確率約 93～94%','NumPy 手寫 5 層神經網路的前向與反向傳播','GloVe 詞向量相似度與 PCA 視覺化']},
+ {name:'資訊圖表與簡報', m:{betty:2,tdri:1,stancode:1,thesis:1},
+  ev:['BETTY._.WHO 品牌：品牌視覺與網站介面','設研院：展示層級與陳列原則','波士頓房價：特徵重要度圖表']},
+ {name:'設計產業了解', m:{tdri:2,green:2,betty:2,thesis:2},
+  ev:['景觀學士、建築碩士','設研院公共設計專案','綠建築標章實務']},
+ {name:'PyTorch', m:{stancode:2},
+  ev:['PyTorch：MNIST 手寫數字，CNN 與 LSTM 比較，驗證準確率約 93～94%','NumPy 手寫 5 層神經網路的前向與反向傳播','GloVe 詞向量相似度與 PCA 視覺化']}
 ];
 
 /* ===================== RENDER ===================== */
@@ -873,17 +875,16 @@ function viewDetail(id){
 function viewSkills(){
   setViewing('SKILLS');
   $app.innerHTML = `<section class="view skills">
-    <h2 class="sh">可轉移能力對照</h2>
-    <p class="intro">每一列是一項能力，欄位是它出現的地方。點一列可以看到具體做了什麼。最右欄對應「AI 工程師（設計工具開發）」職缺的工作內容與附加條件。</p>
+    <h2 class="sh">Transferable Skills Matrix</h2>
     <div class="mx-wrap"><table class="mx">
-      <thead><tr><th>能力</th>${SOURCES.map(s=>`<th class="c">${s[1]}</th>`).join('')}<th>對應職缺</th></tr></thead>
+      <thead><tr><th>能力</th>${SOURCES.map(s=>`<th class="c">${s[1]}</th>`).join('')}</tr></thead>
       <tbody>${SKILLS.map((s,k)=>`
         <tr class="skill" data-k="${k}" tabindex="0" aria-expanded="false"><td class="sk">${esc(s.name)}</td>
         ${SOURCES.map(([key])=>`<td class="c">${s.m[key]?`<span class="dot ${s.m[key]===2?'full':''}" title="${s.m[key]===2?'主要':'部分'}"></span>`:''}</td>`).join('')}
-        <td class="jb">${s.jobs.map(j=>J[j].split(' ')[0]).join('・')}</td></tr>
-        <tr class="ev" hidden><td colspan="${SOURCES.length+2}"><ul>${s.ev.map(e=>`<li>${esc(e)}</li>`).join('')}</ul></td></tr>`).join('')}
+        </tr>
+        <tr class="ev" hidden><td colspan="${SOURCES.length+1}"><ul>${s.ev.map(e=>`<li>${esc(e)}</li>`).join('')}</ul></td></tr>`).join('')}
       </tbody></table></div>
-    <div class="legend"><span><span class="dot full"></span>主要經驗</span><span><span class="dot"></span>部分經驗</span><span>工作1～5、附加1～6 對應職缺原文的編號</span></div>
+    <div class="legend"><span><span class="dot full"></span>主要經驗</span><span><span class="dot"></span>部分經驗</span></div>
   </section>`;
   $app.querySelectorAll('tr.skill').forEach(tr=>{
     const tog=()=>{const ev=tr.nextElementSibling; ev.hidden=!ev.hidden; tr.setAttribute('aria-expanded',String(!ev.hidden));};
@@ -955,7 +956,7 @@ function route(){
   document.body.classList.remove('is-home','frag-page','betty-page');
   closeProject();
   if(h==='about') viewAbout();
-  // SKILLS page hidden for now: viewSkills() is kept, the link and route are off; #skills falls through to WORKS
+  else if(h==='skills') viewSkills();
   else if(byId[h]) viewDetail(h);
   else if(h.startsWith('cat-') && catById[h.slice(4)]) viewCategory(h.slice(4));
   else viewHome();
