@@ -255,7 +255,7 @@ main{padding-block:190px 140px;max-width:1280px;margin:0 auto;transition:filter 
 .mx thead th{font-family:var(--f-ui);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
 .mx thead th + th,.mx td + td{border-left:1px solid var(--line)}
 .mx td.c{text-align:center;width:84px}
-.mx tbody tr{cursor:pointer}
+.mx tbody tr{cursor:default}
 .mx .sk{font-weight:700;font-size:14.5px}
 .mx .jb{font-family:var(--f-ui);font-size:12px;color:var(--blue);letter-spacing:.03em;white-space:nowrap}
 .dot{display:inline-block;width:12px;height:12px;border:1.5px solid var(--fg);vertical-align:middle}
@@ -879,17 +879,13 @@ function viewSkills(){
     <div class="mx-wrap"><table class="mx">
       <thead><tr><th>能力</th>${SOURCES.map(s=>`<th class="c">${s[1]}</th>`).join('')}</tr></thead>
       <tbody>${SKILLS.map((s,k)=>`
-        <tr class="skill" data-k="${k}" tabindex="0" aria-expanded="false"><td class="sk">${esc(s.name)}</td>
+        <tr class="skill" data-k="${k}"><td class="sk">${esc(s.name)}</td>
         ${SOURCES.map(([key])=>`<td class="c">${s.m[key]?`<span class="dot ${s.m[key]===2?'full':''}" title="${s.m[key]===2?'主要':'部分'}"></span>`:''}</td>`).join('')}
         </tr>
-        <tr class="ev" hidden><td colspan="${SOURCES.length+1}"><ul>${s.ev.map(e=>`<li>${esc(e)}</li>`).join('')}</ul></td></tr>`).join('')}
+`).join('')}
       </tbody></table></div>
     <div class="legend"><span><span class="dot full"></span>主要經驗</span><span><span class="dot"></span>部分經驗</span></div>
   </section>`;
-  $app.querySelectorAll('tr.skill').forEach(tr=>{
-    const tog=()=>{const ev=tr.nextElementSibling; ev.hidden=!ev.hidden; tr.setAttribute('aria-expanded',String(!ev.hidden));};
-    tr.onclick=tog; tr.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}};
-  });
 }
 
 function viewAbout(){
